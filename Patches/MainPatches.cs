@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity;
+﻿using HarmonyLib;
 using Il2Cpp;
-using HarmonyLib;
-using AdjustableWalkSpeed;
 
 
 namespace AdjustableWalkSpeed.Patches
@@ -25,12 +18,13 @@ namespace AdjustableWalkSpeed.Patches
                 {
                     __result *= Main.walkSpeedMultiplier;
                 }
-
                 
-               
+
+                if (GameManager.GetPlayerManagerComponent().PlayerIsSprinting())
+                {
+                    __result *= Main.runSpeedMultiplier;
+                }
             }
         }
-
-
     }
 }

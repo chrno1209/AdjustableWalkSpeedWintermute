@@ -1,4 +1,7 @@
+using Il2Cpp;
+using MelonLoader;
 using Mono.Cecil;
+using UnityEngine;
 
 namespace AdjustableWalkSpeed
 {
@@ -6,6 +9,7 @@ namespace AdjustableWalkSpeed
     {
 
         public static float walkSpeedMultiplier = 1;
+        public static float runSpeedMultiplier = 1;
 
         public override void OnInitializeMelon()
         {
@@ -21,14 +25,19 @@ namespace AdjustableWalkSpeed
             if (Input.mouseScrollDelta.y < 0 && !InterfaceManager.IsOverlayActiveCached())
             {
                 walkSpeedMultiplier -= 0.1f;
-                walkSpeedMultiplier = Mathf.Clamp(walkSpeedMultiplier, 0.3f, 1);
+                walkSpeedMultiplier = Mathf.Clamp(walkSpeedMultiplier, 0.3f, 3);
+
+                runSpeedMultiplier -= 0.1f;
+                runSpeedMultiplier = Mathf.Clamp(walkSpeedMultiplier, 0.3f, 3);
             }
 
             if (Input.mouseScrollDelta.y > 0 && !InterfaceManager.IsOverlayActiveCached())
             {
                 walkSpeedMultiplier += 0.1f;
-                walkSpeedMultiplier = Mathf.Clamp(walkSpeedMultiplier, 0.3f, 1);
+                walkSpeedMultiplier = Mathf.Clamp(walkSpeedMultiplier, 0.3f, 3);
 
+                runSpeedMultiplier += 0.1f;
+                runSpeedMultiplier = Mathf.Clamp(walkSpeedMultiplier, 0.3f, 3);
             }
 
         }
